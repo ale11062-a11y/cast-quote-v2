@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Filter benign Vite websocket / HMR notices in sandboxed preview environment where HMR is disabled
+      (function() {
+        var isViteNotice = function() {
+          for (var i = 0; i < arguments.length; i++) {
+            var arg = arguments[i];
+            if (!arg) continue;
+            var str = '';
+            if (typeof arg === 'string') {
+              str = arg;
+            } else if (typeof arg.message === 'string') {
+              str = arg.message;
+            } else if (arg instanceof Error) {
+              str = (arg.message || '') + ' ' + (arg.stack || '');
+            } else {
+              try { str = String(arg); } catch(e) {}
+            }
+            if (
+              str.indexOf('[vite]') !== -1 ||
+              str.indexOf('vite:') !== -1 ||
+              str.indexOf('failed to connect to websocket') !== -1 ||
+              str.indexOf('WebSocket closed without opened') !== -1
+            ) {
+              return true;
+            }
+          }
+          return false;
+        };
+
+        ['error', 'warn', 'info', 'log', 'debug'].forEach(function(method) {
+          var original = console[method];
+          if (original) {
+            console[method] = function() {
+              if (isViteNotice.apply(null, arguments)) {
+                return;
+              }
+              return original.apply(console, arguments);
+            };
+          }
+        });
+
+        window.addEventListener('error', function(event) {
+          if (event && (isViteNotice(event.message) || isViteNotice(event.error))) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event && event.reason;
+          if (reason && (isViteNotice(reason) || isViteNotice(reason.message))) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+          }
+        }, true);
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>CAST Quote - Orçamentos &amp; Ordens de Serviço</title>
+    <meta name="description" content="Sistema profissional multiempresa de orçamentos, ordens de serviço, fotos verticais e geração de PDFs." />
+    <meta property="og:title" content="CAST Quote - Orçamentos &amp; Ordens de Serviço" />
+    <meta property="og:description" content="Sistema profissional multiempresa de orçamentos, ordens de serviço, fotos verticais e geração de PDFs." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="CAST Quote" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

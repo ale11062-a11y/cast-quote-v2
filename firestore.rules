@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Permitir operações para as coleções do sistema
+    match /companies/{companyId} {
+      allow read, write: if true;
+    }
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+    match /quotes/{quoteId} {
+      allow read, write: if true;
+    }
+    match /work_orders/{orderId} {
+      allow read, write: if true;
+    }
+    match /clients/{clientId} {
+      allow read, write: if true;
+    }
+    match /technicians/{technicianId} {
+      allow read, write: if true;
+    }
+  }
+}

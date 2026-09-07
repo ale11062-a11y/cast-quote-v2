@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="castGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Background with safe padding for maskable -->
+  <rect width="512" height="512" rx="100" fill="url(#castGrad)"/>
+  
+  <!-- Outer glowing emblem -->
+  <rect x="80" y="80" width="352" height="352" rx="48" fill="#1e293b" stroke="#334155" stroke-width="6"/>
+  
+  <!-- Document / Quote Sheet -->
+  <rect x="136" y="128" width="240" height="272" rx="20" fill="#ffffff"/>
+  
+  <!-- Document Header Bar -->
+  <rect x="136" y="128" width="240" height="64" rx="20" fill="url(#blueGrad)"/>
+  <rect x="136" y="172" width="240" height="20" fill="url(#blueGrad)"/>
+  
+  <!-- CAST Monogram / Quote Lines -->
+  <circle cx="176" cy="160" r="14" fill="#ffffff" opacity="0.9"/>
+  <rect x="204" y="152" width="130" height="16" rx="8" fill="#ffffff"/>
+  
+  <!-- Document content lines -->
+  <rect x="168" y="220" width="176" height="14" rx="7" fill="#cbd5e1"/>
+  <rect x="168" y="248" width="140" height="14" rx="7" fill="#e2e8f0"/>
+  <rect x="168" y="276" width="160" height="14" rx="7" fill="#e2e8f0"/>
+  
+  <!-- Price / Total Tag -->
+  <rect x="168" y="324" width="176" height="44" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  <circle cx="196" cy="346" r="10" fill="url(#amberGrad)"/>
+  <rect x="220" y="338" width="90" height="16" rx="6" fill="#0f172a"/>
+  
+  <!-- Verified Badge -->
+  <circle cx="370" cy="370" r="44" fill="url(#blueGrad)" stroke="#ffffff" stroke-width="6"/>
+  <path d="M352 370 L365 383 L390 357" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
